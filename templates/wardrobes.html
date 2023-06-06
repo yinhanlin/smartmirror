@@ -1,0 +1,41 @@
+{% extends "test.html" %}
+
+{% block title %}MyWardrobes{% endblock %}
+
+{% block content %}
+    <h2 class="mt-3">我的衣柜</h2>
+    <hr>
+
+    <div class="container mt-4">
+        <div class="row">
+            {% for cloth in clothes %}
+                <div class="col-md-6 col-sm-3 mb-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ cloth.cloth_name }}</h5>
+                            <a href="/cloth/myconsole/{{ cloth.uid }}">
+                                <img decoding="async" src="{{ url_for('static', filename='images/uploads/' + cloth.cloth_name) }}" class="card-img-top img-responsive" alt=cloth.cloth_name>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!-- 上传 -->
+            <div class="col-md-2 col-sm-2 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <a href="/cloth/upload">
+                            <img decoding="async" width="100" src="{{ url_for('static', filename='images/upload.png') }}" class="card-img-top img-responsive" alt="上传">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 返回首页的按钮 -->
+    <div class="text-center mt-4">
+        <a class="btn btn-primary" href="/" role="button">首页</a>
+    </div>
+{% endblock %}

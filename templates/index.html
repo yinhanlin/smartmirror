@@ -1,0 +1,91 @@
+{% extends "test.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <!-- 第一部分：室内环境 -->
+        <div class="col-md-4 col-md-push-2">
+            <div class="card bg-light rounded">
+                <div class="card-body">
+                    <h5 class="card-title">室内环境</h5>
+                    <p class="card-text">室温 : {{ indoor_env.temp_in }} ℃</p>
+                    <p class="card-text">湿度 : {{ indoor_env.humi_in }} %</p>
+                    <p class="card-text">环境质量 : {{ indoor_env.api_in }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二部分：当前天气 -->
+        <div class="col-md-4 col-md-push-4">
+            <div class="card bg-light rounded">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h5 class="card-title">当前天气</h5>
+                            <p class="card-text">天气 : {{ outdoor_climate.weather }}</p>
+                            <p class="card-text">温度 : {{ outdoor_climate.temp_out }} ℃</p>
+                            <p class="card-text">湿度 : {{ outdoor_climate.humi_out }} %</p>
+                        </div>
+                        <div class="col-md-7">
+                            <img decoding="async" width="100" height="100"
+                                 src="{{ url_for('static', filename='images/weather/'+weather_events[outdoor_climate.weather]+'.png') }}"
+                                 class="img-responsive" alt=outdoor_climate.weather>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+    </div>
+
+    <div class="row">
+        <!-- 第三部分：天气预报 -->
+        <div class="col-md-12 mt-3">
+            <div class="card bg-light rounded">
+                <div class="card-body">
+                    <h5 class="card-title">天气预报</h5>
+                    <div class="row">
+                        {% for cast in forecasts %}
+                            <div class="col-md-4">
+                                <div class="card bg-light rounded">
+                                    <div class="card-body">
+                                        <div class="mb-3 mt-3">
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <h6 class="text">{{ cast.date }}&emsp;周{{ week_num[cast.week] }}</h6>
+                                                    <p class="text">白天天气 : {{ cast.day_weather }}</p>
+                                                    <p class="text">白天温度 : {{ cast.day_temp }} ℃</p>
+                                                    <p class="text">晚上天气 : {{ cast.night_weather }}</p>
+                                                    <p class="text">晚上温度 : {{ cast.night_temp }} ℃</p>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <img decoding="async" width="100" height="100"
+                                                         src="{{ url_for('static', filename='images/weather/'+weather_events[cast.day_weather]+'.png') }}"
+                                                         class="img-responsive" alt=cast.day_weather>
+                                                    <img decoding="async" width="100" height="100"
+                                                         src="{{ url_for('static', filename='images/weather/'+weather_events[cast.night_weather]+'.png') }}"
+                                                         class="img-responsive" alt=cast.night_weather>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 切换到"wardrobes.html"的按钮 -->
+    <div class="text-center mt-4">
+        <a class="btn btn-primary" href="{{ url_for('ClothChange.my_wardrobes') }}" role="button">我的衣柜</a>
+    </div>
+{% endblock %}
