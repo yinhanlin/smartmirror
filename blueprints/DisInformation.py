@@ -8,8 +8,8 @@ import requests
 from models import IndoorClimate, OutdoorClimate, WeatherForecast
 
 bp = Blueprint("DisInformation", __name__, url_prefix="/")
-url = ' http://10.129.212.159:2023/test'
-weather_req = 'https://restapi.amap.com/v3/weather/weatherInfo?key=96a0ca8c61138af5aa19f97bcac8de84&city=110108'
+url = ' http://xxxxxxxx'
+weather_req = 'yourAPIKey'
 
 
 class Forecast:
