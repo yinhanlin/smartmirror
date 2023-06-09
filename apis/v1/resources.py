@@ -5,7 +5,7 @@ from exts import db
 from models import IndoorClimate, OutdoorClimate, Cloth
 
 # 目标计算机的IP地址和端口号
-target_ip = '192.168.137.1'
+target_ip = 'XXXXXXXX'
 target_port = 6666
 url = f"http://{target_ip}:{target_port}/"
 
