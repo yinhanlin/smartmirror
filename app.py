@@ -9,7 +9,7 @@ from flask_migrate import Migrate
 app = Flask(__name__)
 # 绑定配置文件
 app.config.from_object(config)
-app.config['SECRET_KEY'] = 'AASDFASDF'
+app.config['SECRET_KEY'] = 'XXXXXXF'
 db.init_app(app)
 mail.init_app(app)
 dropzone.init_app(app)
@@ -29,6 +29,6 @@ app.register_blueprint(api_v1, url_prefix='/api/v1')
 
 if __name__ == '__main__':
     app.debug = True
-    # app.config['SERVER_NAME'] = 'tingfeng.online:2023'
+    # app.config['SERVER_NAME'] = 'XXXXXXX:2023'
     # app.run(host='0.0.0.0')
     app.run(host='0.0.0.0', port=2023)
